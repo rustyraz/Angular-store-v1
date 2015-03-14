@@ -1,0 +1,72 @@
+<section>
+  <ul class="nav nav-tabs nav-justifieds">
+    <li ng-class="{ active : panel.isSelected(1) }">
+      <a href ng-click="panel.selectTab(1)">Description</a>
+    </li>
+    <li ng-class="{ active : panel.isSelected(2) }">
+      <a href ng-click="panel.selectTab(2)">Specifications</a>
+    </li>
+    <li ng-class="{ active : panel.isSelected(3) }">
+      <a href ng-click="panel.selectTab(3)">Reviews</a>
+    </li>
+  </ul>
+
+  <div class="panel"  ng-show="panel.isSelected(1)">
+    <h4>Description</h4>
+    <p>{{ product.description }}</p>
+  </div>
+
+  <div class="panel"  ng-show="panel.isSelected(2)">
+    <h4>Specifications</h4>
+    <blockquote>None Yet</blockquote>
+  </div>
+
+  <div class="panel" ng-show="panel.isSelected(3)">
+    <h4>Review</h4>
+    <blockquote ng-repeat="review in product.reviews">
+      <b>{{review.rating}} stars </b>
+      {{review.comment}}
+      <br/>
+      <small>by {{review.author}}</small>
+    </blockquote>
+    <hr/>
+    <h4>Submit a review</h4>
+
+    <div class="panel panel-success">
+      <div class="panel-body">
+        <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+        
+          <div class="form-group">
+             <label>Rating :</label>
+            <select class="form-control" ng-model="reviewCtrl.review.rating" required>
+              <option value="" selected="selected">Rate this item</option>
+              <option value="1">1 Star</option>
+              <option value="2">2 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="5">5 Stars</option>
+            </select>
+          </div>
+           
+
+          <div class="form-group">
+            <label>Comment:</label>
+            <textarea name="comment" class="form-control" rows="4" placeholder="Enter a commemt" ng-model="reviewCtrl.review.comment" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="email" class="form-control" placeholder="you@example.com" ng-model="reviewCtrl.review.author" required />
+          </div>
+            
+          <div class="form-group">
+            <button class="btn btn-success">Submit</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+        
+  </div>
+  
+</section>

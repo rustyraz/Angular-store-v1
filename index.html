@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="store">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Angular Store</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-route.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/products.js"></script>
+
+
+
+    <div class="container" ng-controller="StoreController as store">
+      <div class="row">
+        <div class="col-md-12">
+        <div class="page-header">
+          <h1>Simple Online Ordeing System <small> - with angularjs</small></h1>
+        </div>
+
+          <ul class="list-group">
+            <li class="list-group-item" ng-repeat="product in store.products | orderBy:'price'">
+
+              <div class="media">
+                <div class="media-left">                  
+                  <img ng-src="{{product.image[0].thumb}}" width="128px">
+                </div>
+
+                <div class="media-body">
+                  <h3 class="media-heading" product-title> </h3>
+                  <button class="btn btn-info btn-lg" ng-show="product.canPurchase">Add to cart</button>
+                  <hr/>
+
+                  <div product-panels></div>
+                  
+                </div>
+              </div>
+              
+              
+              
+            </li>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+  </body>
+</html>
